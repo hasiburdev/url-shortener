@@ -1,12 +1,21 @@
 "use client";
-import { Terminal, AlertCircle, CheckCircle, Keyboard } from "lucide-react";
+import {
+  Terminal,
+  AlertCircle,
+  CheckCircle,
+  Keyboard,
+  Clipboard,
+  ClipboardCheck,
+} from "lucide-react";
 import { GenerateInputFromUrl } from "./generate-input-from-url";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { useState } from "react";
+import { CopyLink } from "./copy-link";
 
 export const GenerateUrl = () => {
   const [link, setLink] = useState("");
   const [error, setError] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   let description;
   let alertTitle;
@@ -27,13 +36,23 @@ export const GenerateUrl = () => {
     icon = <CheckCircle className="h-4 w-4 stroke-success" />;
   }
 
+  const handleChange = () => {
+    navigator.clipboard.writeText(link);
+    setIsCopied(true);
+  };
+
   return (
     <>
       <GenerateInputFromUrl setLink={setLink} setError={setError} />
       <Alert variant={error ? "destructive" : link ? "success" : "default"}>
         {icon}
         <AlertTitle>{alertTitle}</AlertTitle>
-        <AlertDescription>{description}</AlertDescription>
+        <AlertDescription className="flex justify-between items-center">
+          <span>{description}</span>
+          <span onClick={handleChange} className="cursor-pointer">
+            <CopyLink isCopied={isCopied} />
+          </span>
+        </AlertDescription>
       </Alert>
     </>
   );
