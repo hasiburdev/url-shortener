@@ -31,6 +31,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
+    --success: 160, 84%, 39%;
+    --success-foreground: var(--accent-foreground);
+
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
