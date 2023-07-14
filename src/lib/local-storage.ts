@@ -13,7 +13,9 @@ export const getAllLinks = (): ShortLinks => {
 export const addLink = (link: string) => {
   const links = getAllLinks();
   const shortId = generateRandomString();
-  if (!links[shortId]) {
+  if (shortId in links) {
+    addLink(link);
+  } else {
     const newLink: ShortLink = {
       url: link,
       shortId,
@@ -26,8 +28,6 @@ export const addLink = (link: string) => {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(links))
     );
     return newLink;
-  } else {
-    addLink(link);
   }
 };
 
