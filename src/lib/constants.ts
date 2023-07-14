@@ -7,3 +7,4 @@ if (typeof window !== "undefined") {
 }
 
 export const BASE_URL = base_url;
+export const LOCAL_STORAGE_KEY = "shortlinks";

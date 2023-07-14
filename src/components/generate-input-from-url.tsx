@@ -1,10 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { generateRandomString } from "@/lib/generate-random-string";
+import { BASE_URL } from "@/lib/constants";
+import { addLink } from "@/lib/local-storage";
 import { cn } from "@/lib/utils";
-import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
-import { BASE_URL } from "../lib/constants";
+import { Dispatch, KeyboardEvent, SetStateAction, useRef } from "react";
 
 interface GenerateInputFromUrlProps {
   setLink: Dispatch<SetStateAction<string>>;
@@ -15,17 +15,14 @@ export function GenerateInputFromUrl({
   setLink,
   setError,
 }: GenerateInputFromUrlProps): JSX.Element {
-  const [value, setValue] = useState("");
-
+  const ref = useRef<HTMLInputElement>(null);
   const onClick = () => {
     try {
-      const url = new URL(value);
-      const shortString = generateRandomString();
-      setLink(`${BASE_URL}/${shortString}`);
+      const url = new URL(ref.current?.value || "");
+      const generatedLink = addLink(url.href);
+      setLink(`${BASE_URL}/${generatedLink?.shortId}`);
       setError(false);
-      console.log(url);
     } catch (error) {
-      console.error("Something went wrong");
       setError(true);
     }
   };
@@ -36,7 +33,7 @@ export function GenerateInputFromUrl({
     }
   };
 
-  if (value === "") {
+  if (ref.current?.value === "") {
     setError(false);
     setLink("");
   }
@@ -44,10 +41,9 @@ export function GenerateInputFromUrl({
   return (
     <div className={cn("flex w-full max-w-full items-center space-x-2")}>
       <Input
+        ref={ref}
         className={cn("flex-grow")}
         type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder="Enter URL"
       />
