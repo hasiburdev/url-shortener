@@ -34,3 +34,15 @@ export const addLink = (link: string) => {
 export const removeLink = (link: ShortLink) => {};
 
 export const updateLink = (link: ShortLink) => {};
+
+export const updateVisitCount = (shortId: string) => {
+  console.log("Visit", shortId);
+  const links = getAllLinks();
+  const link = links[shortId];
+  if (link) {
+    link.visits = link.visits + 1;
+  }
+  onClient(() =>
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(links))
+  );
+};

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { getAllLinks } from "@/lib/local-storage";
+import { getAllLinks, updateVisitCount } from "@/lib/local-storage";
 import Link from "next/link";
 
 interface PageProps {
@@ -8,10 +8,11 @@ interface PageProps {
     link: string;
   };
 }
-export default function Page({ params }: PageProps): JSX.Element {
+export default function LinkRedirectPage({ params }: PageProps): JSX.Element {
   const links = getAllLinks();
   if (params.link in links) {
     window.location.href = links[params.link].url;
+    updateVisitCount(params.link);
   } else {
     return (
       <div className="min-h-screen flex justify-center items-center">
@@ -25,6 +26,7 @@ export default function Page({ params }: PageProps): JSX.Element {
       </div>
     );
   }
+
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="flex flex-col items-center ">
