@@ -1,16 +1,9 @@
 "use client";
-import {
-  Terminal,
-  AlertCircle,
-  CheckCircle,
-  Keyboard,
-  Clipboard,
-  ClipboardCheck,
-} from "lucide-react";
-import { GenerateInputFromUrl } from "./generate-input-from-url";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { AlertCircle, CheckCircle, Keyboard } from "lucide-react";
 import { useState } from "react";
 import { CopyLink } from "./copy-link";
+import { GenerateInputFromUrl } from "./generate-input-from-url";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 
 export const GenerateUrl = () => {
   const [link, setLink] = useState("");
@@ -50,7 +43,7 @@ export const GenerateUrl = () => {
         <AlertDescription className="flex justify-between items-center">
           <span>{description}</span>
           <span onClick={handleChange} className="cursor-pointer">
-            <CopyLink isCopied={isCopied} />
+            {!error && link && <CopyLink isCopied={isCopied} />}
           </span>
         </AlertDescription>
       </Alert>
