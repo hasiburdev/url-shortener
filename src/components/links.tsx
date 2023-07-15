@@ -20,39 +20,40 @@ export const Links = () => {
     setLinks(getAllLinks());
   }, []);
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Sl. No</TableHead>
-          <TableHead>Short Code</TableHead>
-          <TableHead>Url</TableHead>
-          <TableHead className="">Visits</TableHead>
-          <TableHead className="">Actions</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
+    <>
+      <div className="grid grid-cols-[1fr_2fr_5fr_1fr_1fr] w-full">
+        <div className="">Sl. No</div>
+        <div>Short Code</div>
+        <div>Url</div>
+        <div className="">Visits</div>
+        <div className="">Actions</div>
+      </div>
+      <div className="divide-y-2 divide-muted">
         {Object.values(links).map((link, index) => (
-          <TableRow key={link.shortId}>
-            <TableCell>{index + 1}</TableCell>
-            <TableCell className="font-medium">{link.shortId}</TableCell>
-            <TableCell className="overflow-ellipsis">
+          <div
+            key={link.shortId}
+            className="grid grid-cols-[1fr_2fr_5fr_1fr_1fr] w-full p-3"
+          >
+            <div>{index + 1}</div>
+            <div className="font-medium">{link.shortId}</div>
+            <div className="truncate pr-4">
               <a
-                className="underline text-slate-500"
+                className="underline text-slate-500 pr-3"
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {link.url}
               </a>
-            </TableCell>
-            <TableCell>{link.visits}</TableCell>
-            <TableCell className="text-right flex gap-2">
+            </div>
+            <div className="text-center">{link.visits}</div>
+            <div className="text-right flex justify-end gap-2">
               <EditLink />
               <DeleteLink />
-            </TableCell>
-          </TableRow>
+            </div>
+          </div>
         ))}
-      </TableBody>
-    </Table>
+      </div>
+    </>
   );
 };
