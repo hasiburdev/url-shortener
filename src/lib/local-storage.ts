@@ -31,6 +31,12 @@ export const addLink = (link: string) => {
   }
 };
 
-export const removeLink = (link: ShortLink) => {};
+export const removeLink = (shortId: string) => {
+  const links = getAllLinks();
+  delete links[shortId];
+  onClient(() =>
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(links))
+  );
+};
 
 export const updateLink = (link: ShortLink) => {};
