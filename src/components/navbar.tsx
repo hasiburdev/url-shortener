@@ -10,7 +10,7 @@ export const Navbar = () => {
           <Link href="/" className="leading-7 text-muted-foreground">
             Home
           </Link>
-          <Link href="#links" className="leading-7 text-muted-foreground">
+          <Link href="/links" className="leading-7 text-muted-foreground">
             All Links
           </Link>
         </div>
