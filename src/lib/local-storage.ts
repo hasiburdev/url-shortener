@@ -39,4 +39,31 @@ export const removeLink = (shortId: string) => {
   );
 };
 
-export const updateLink = (link: ShortLink) => {};
+export const updateLink = (
+  previousShortId: string,
+  newShortId: string,
+  newUrl: string
+) => {
+  const links = getAllLinks();
+  const previousLink = links[previousShortId];
+  if (previousShortId !== newShortId) {
+    const exists = links[newShortId];
+    if (exists) return true;
+    delete links[previousShortId];
+    const newLink: ShortLink = {
+      createdAt: previousLink.createdAt,
+      updatedAt: new Date().toISOString(),
+      url: newUrl,
+      shortId: newShortId,
+      visits: previousLink.visits,
+    };
+    links[newShortId] = newLink;
+  } else {
+    previousLink.updatedAt = new Date().toISOString();
+    previousLink.url = newUrl;
+  }
+
+  onClient(() =>
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(links))
+  );
+};
