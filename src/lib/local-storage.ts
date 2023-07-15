@@ -67,3 +67,12 @@ export const updateLink = (
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(links))
   );
 };
+
+export const updateVisitCount = (shortId: string) => {
+  const links = getAllLinks();
+  const link = links[shortId];
+  if (link) link.visits++;
+  onClient(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(links));
+  });
+};
