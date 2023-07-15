@@ -28,7 +28,7 @@ export const Links = () => {
         <div className="">Visits</div>
         <div className="">Actions</div>
       </div>
-      <div className="divide-y-2 divide-muted">
+      <div className="divide-y-2 divide-muted overflow-auto">
         {Object.values(links).map((link, index) => (
           <div
             key={link.shortId}
@@ -47,9 +47,9 @@ export const Links = () => {
               </a>
             </div>
             <div className="text-center">{link.visits}</div>
-            <div className="text-right flex justify-end gap-2">
+            <div className="text-right flex items-center justify-end gap-2">
               <EditLink />
-              <DeleteLink />
+              <DeleteLink setLinks={setLinks} shortId={link.shortId} />
             </div>
           </div>
         ))}
