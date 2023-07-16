@@ -6,12 +6,14 @@
     <a href="https://github.com/hasiburdev/url-shortener/issues" style="text-decoration: underline">Issues</a>
 </p>
 
- <a href="https://github.com/hasiburdev/url-shortener/stargazers">
-    <img src="https://img.shields.io/github/stars/hasiburdev/url-shortener" alt="Github Stars">
-</a>  
- <a href="https://github.com/hasiburdev/url-shortener/pulse">
-    <img src="https://img.shields.io/github/commit-activity/m/hasiburdev/url-shortener" alt="Commits-per-month">
-</a>
+<p align="center">
+    <a href="https://github.com/hasiburdev/url-shortener/stargazers">
+        <img src="https://img.shields.io/github/stars/hasiburdev/url-shortener" alt="Github Stars">
+    </a>  
+    <a href="https://github.com/hasiburdev/url-shortener/pulse">
+        <img src="https://img.shields.io/github/commit-activity/m/hasiburdev/url-shortener" alt="Commits-per-month">
+    </a>
+</p>
 
 ## About the Project
 
