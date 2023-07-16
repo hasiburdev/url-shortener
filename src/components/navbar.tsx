@@ -5,7 +5,9 @@ export const Navbar = () => {
   return (
     <div className="w-full ">
       <nav className="flex items-center justify-between mb-2">
-        <div>Logo</div>
+        <div className="font-mono font-semibold">
+          <Link href="/">Url Shortener</Link>
+        </div>
         <div className="flex items-center gap-4 grow justify-center">
           <Link href="/" className="leading-7 text-muted-foreground">
             Home
