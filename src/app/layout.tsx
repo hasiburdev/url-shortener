@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="h-screen max-w-3xl mx-auto  flex flex-col items-center justify-start gap-12 p-6">
-          <Navbar />
-          {children}
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <main className="h-screen max-w-3xl mx-auto  flex flex-col items-center justify-start gap-12 p-6">
+            <Navbar />
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
