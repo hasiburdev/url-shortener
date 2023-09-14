@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:build": "docker build -t url-shortener .",
+    "docker:start": "docker run --name url-shortener -p 3000:3000 -d --hostname urlhost url-shortener",
+    "docker:stop": "docker stop url-shortener",
+    "docker:rm": "docker container rm url-shortener",
+    "docker:clean": "pnpm docker:stop && pnpm docker:rm"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.0.4",
